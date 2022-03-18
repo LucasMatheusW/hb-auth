@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container h-100">
+        <div class="row h-100 d-flex justify-content-center align-items-center">
+            <div class="col-sm-6 col-10">
+                <div class="card bg-translucid">
+                    <div class="card-header text-center">
+                        {% if user.photo != "" %}
+                            <img class="rounded-circle shadow-4" style="width: 150px;" src="{{ user.photo }}"/>
+                        {% else %}
+                        <img class="rounded-circle shadow-4" style="width: 150px;" src="{% static 'img/user_avatar.png' %}"/>
+                        {% endif %}
+                    <div class="card-body">
+                        <form id="authorizationForm" method="post"> 
+                            <h3>Autorizar login em {{ application.name }}?</h3>
+                            {% csrf_token %}
+            
+                            {% for field in form %}
+                                {% if field.is_hidden %}
+                                    {{ field }}
+                                {% endif %}
+                            {% endfor %}
+            
+                            {{ form.errors }}
+                            {{ form.non_field_errors }}
+                            <div class="control-group">
+                                <div class="controls">
+                                    <input type="submit" class="btn btn-large btn-danger" value="Cancelar"/>
+                                    <input type="submit" class="btn btn-large btn-light" name="allow" value="Autorizar"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

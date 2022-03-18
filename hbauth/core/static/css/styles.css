@@ -1,0 +1,152 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'lato', sans-serif;
+}
+
+body {
+    background: linear-gradient(126deg, rgba(2,0,36,1) 0%, rgba(40,9,121,1) 35%, rgba(138,10,186,1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card.bg-translucid {
+    background-color: rgba(2,0,36,0.3);
+}
+
+.card.bg-translucid>div {
+    background-color: rgba(2,0,36,0.3);
+    color: azure;
+}
+
+.form-horizontal {
+    text-align: center;
+}
+
+.form-horizontal .form-icon {
+    color: azure;
+    font-size: 100px;
+    line-height: 85px;
+    margin: 0 0 13px;
+}
+
+.form-horizontal .title {
+    color: azure;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 35px 0;
+}
+
+.form-horizontal .form-group {
+    margin: 0 0 10px;
+    position: relative;
+}
+
+.form-horizontal .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: dimgrey;
+}
+
+.form-horizontal.err > .form-group .input-icon {
+    top: 70%;
+}
+
+.form-horizontal.err > .form-group ~ .form-group .input-icon{
+    top: 50%;
+}
+
+.form-horizontal .form-control {
+    color: dimgrey;
+    font-size: 13px;
+    letter-spacing: 1px;
+    height: 37px;
+    padding: 2px 15px 2px 35px;
+    border: none;
+    border-radius: 50px;
+}
+
+.form-horizontal .form-control::placeholder{
+    color: rgba(0, 0, 0, 0.7);
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.form-horizontal .separator {
+    color: azure;
+    font-size: 14px;
+}
+
+.form-horizontal .separator::before{
+    font-size : 14px;
+    color: azure;
+    content: "———————— ";
+    width: 100%;
+}
+
+.form-horizontal .separator::after{
+    font-size : 14px;
+    color: azure;
+    content: " ————————";
+    width: 100%;
+}
+
+.form-horizontal .btn {
+    color: dimgrey;
+    background-color: azure;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;    
+}
+
+.form-horizontal .btn.discord-login {
+    color: white;
+    background-color: #7289DA;
+}
+
+.form-horizontal .form-options {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.form-horizontal .form-options li a{
+    color: azure;
+    letter-spacing: 0.5px;
+    margin: 0 0 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.form-horizontal .form-options li a:hover{
+    text-decoration: underline;
+}
+
+.form-horizontal.err .form-group {
+    text-align: start;
+}
+
+.form-horizontal.err .form-control {
+    border: 2px solid red;
+}
+
+.form-horizontal.err > .form-group::before{
+    color: red;
+    content: "Usuário/senha incorretos!";
+}
+
+.form-horizontal.err > .form-group ~ .form-group::before{
+    color: initial;
+    content: "";
+}

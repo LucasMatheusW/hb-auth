@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", 'django-insecure-unbi#(!87x5quhx8d0xjot43)gy=7uczh#9h6vg5(mf+iz7rus')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -143,3 +143,14 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.discord.DiscordOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+if not DEBUG:
+    # import dj_database_url
+    import django_heroku
+    django_heroku.settings(locals())
+    # Force https redirect
+    SECURE_SSL_REDIRECT = True
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    # Force HTTPS in the final URIs
+    SOCIAL_AUTH_REDIRECT_IS_HTTPS = True

@@ -26,5 +26,6 @@ urlpatterns = [
     path("", views.index, name='index'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path("user/", views.get_user, name='user'),
+    path("callback/", views.callback, name="callback"),
     path('social-auth/', include('social_django.urls', namespace="social")),
 ]

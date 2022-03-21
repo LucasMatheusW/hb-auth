@@ -132,7 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'hbcommons.Usuario'
 LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = 'callback'
+LOGIN_REDIRECT_URL = 'callback'
 
 SOCIAL_AUTH_DISCORD_KEY = '954498403709108224'
 SOCIAL_AUTH_DISCORD_SECRET = os.getenv('DISCORD_OAUTH_SECRET', 'secret') 

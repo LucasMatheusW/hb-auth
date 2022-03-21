@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        var local = localStorage.getItem("next");
+        if (local) {
+            localStorage.removeItem("next");
+            window.location.href = window.location.origin + local;
+        } else {
+            window.location.href = {% url 'login' %};
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    Aguarde
+{% endblock %}

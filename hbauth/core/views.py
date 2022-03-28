@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return redirect("login")
 
+def no_permission(request):
+    return render(request, "no-permission.html")
+
 @login_required
 def callback(request):
     return render(request, "callback.html")

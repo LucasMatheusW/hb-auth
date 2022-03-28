@@ -15,17 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+from hbauth.core.decorators import can_access_site
 from .core import views
 from django.contrib.auth import views as auth_views
 from oauth2_provider.views import AuthorizationView
 
+authorize = can_access_site(AuthorizationView.as_view(template_name="authorize.html"))
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('authorize/', AuthorizationView.as_view(template_name="authorize.html"), name='authorize'),
+    path('authorize/', authorize, name='authorize'),
     path("o/", include('oauth2_provider.urls', namespace='oauth2_provider')),
     path("", views.index, name='index'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path("user/", views.get_user, name='user'),
     path("callback/", views.callback, name="callback"),
+    path("no-permission/", views.no_permission, name="no-permission"),
     path('social-auth/', include('social_django.urls', namespace="social")),
 ]

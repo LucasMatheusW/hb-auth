@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", 'django-insecure-unbi#(!87x5quhx8d0xjot43)gy=7uczh#9h6vg5(mf+iz7rus')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -144,6 +144,8 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.discord.DiscordOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+OAUTH2_PROVIDER_APPLICATION_MODEL = 'oauth2_provider.Application'
 
 if not DEBUG:
     # import dj_database_url

@@ -9,7 +9,8 @@ User = get_user_model()
 class SitePermission(AbstractBaseModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='Usuário', related_name='site_permissions', blank=False, null=False)
     application = models.ForeignKey(to=Application, on_delete=models.RESTRICT, verbose_name='site', related_name='users_permitted', blank=False, null=False)
-
+    active = models.BooleanField('Ativo', default=False, null=False, blank=False)
+    
     def __str__(self):
         return "{0} para {1}".format(self.application.name, self.user)
 

@@ -6,7 +6,7 @@ def can_access_site(function):
     @wraps(function)
     def wrapper(request, *args, **kwargs):
         try:
-            site_perm = SitePermission.objects.filter(application__client_id=request.GET['client_id'], user=request.user).first()
+            site_perm = SitePermission.objects.filter(application__client_id=request.GET['client_id'], user=request.user, active=True).first()
             if site_perm is not None:
                 return function(request, *args, **kwargs)
             return redirect("no-permission")

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+{% load static %}
 
 {% block javascript %}
 <script type="text/javascript">
@@ -21,7 +22,7 @@
             <div class="col-sm-6 col-10">
                 <form method='POST' class="form-horizontal {% if form.errors %}err{% endif %}">
                     <div class="form-icon">
-                        <i class="fa fa-user-circle"></i>
+                        <img src="{% static 'img/ms-icon-310x310.png'%}"/>
                     </div>
                     <h3 class="title">HannaBananna's awesome sites</h3>
                     {% csrf_token %}

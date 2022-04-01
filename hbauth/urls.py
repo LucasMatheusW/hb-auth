@@ -32,5 +32,6 @@ urlpatterns = [
     path("user/", views.get_user, name='user'),
     path("callback/", views.callback, name="callback"),
     path("no-permission/", views.no_permission, name="no-permission"),
+    path("profile/", views.profile, name="profile"),
     path('social-auth/', include('social_django.urls', namespace="social")),
 ]

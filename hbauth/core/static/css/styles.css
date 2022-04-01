@@ -150,3 +150,29 @@ body {
     color: initial;
     content: "";
 }
+
+.avatar-container {
+    position: relative;
+}
+
+.avatar-container .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: .1s ease;
+    background-color: rgba(31, 31, 31, 0.8);
+    cursor: pointer;
+}
+
+.avatar-container .image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.avatar-container:hover .overlay {
+    opacity: 1;
+}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        function changeImg() {
+            document.getElementById("image_input").click();
+        }
+
+        window.onload = function(){ 
+            document.getElementById("image_input").addEventListener('change', (event) => {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    document.getElementById("photoField").value = reader.result;
+                    document.getElementById("avatar").src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            });
+        };
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container h-100">
+        <div class="row h-100 d-flex justify-content-center align-items-center">
+            <div class="col-sm-8 col-10">
+                <div class="card bg-translucid">
+                    <div class="card-body text-center">
+                        <form method='POST' class="form-horizontal {% if form.errors %}err{% endif %}">
+                            <h3 class="title">Meu perfil</h3>
+                            {% render_field form.photo id="photoField" class="d-none" %}
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="w-100 me-3"> 
+                                    {% render_field form.email class="form-control w-100 mb-3" placeholder=form.email.label readonly=True %}
+                                    {% render_field form.nickname class="form-control w-100" placeholder=form.nickname.label %}
+                                </div>
+                                <div class="avatar-container">
+                                    <img class="rounded-circle shadow-4 image" style="width: 100px;" id="avatar" src="{% if form.photo.value != "" %}{{ form.photo.value }}{% else %}{% static 'img/user_avatar.png' %}{% endif %}"/>
+                                    <div class="overlay rounded-circle text-center d-flex align-items-center" onclick="changeImg();">
+                                        <div>
+                                            <i class="fas fa-file-image"></i><br>
+                                            <small>Trocar imagem de perfil</small>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="image_input" accept="image/*" class="d-none"/>
+                                </div>
+                            </div>
+                            {% csrf_token %}
+                            {% render_field form.first_name class="form-control mb-3" placeholder=form.first_name.label %}
+                            {% render_field form.last_name class="form-control mb-3" placeholder=form.last_name.label %}
+                            
+                            <button type="submit" class="btn signin">Salvar</button>
+                        </form>
+                        {% if saved %}
+                        <div class="alert alert-success" role="alert">
+                            Perfil salvo!
+                        </div>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

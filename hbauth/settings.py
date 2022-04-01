@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,7 +125,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/core/static/'
 
 # Default primary key field type
@@ -147,6 +148,12 @@ AUTHENTICATION_BACKENDS = [
 
 OAUTH2_PROVIDER_APPLICATION_MODEL = 'oauth2_provider.Application'
 
+#  Sentry
+sentry_sdk.init(
+    dsn=os.getenv('SENTRY_DSN', ""),
+    integrations=[DjangoIntegration()]
+)
+
 if not DEBUG:
     # import dj_database_url
     import django_heroku
@@ -157,3 +164,4 @@ if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     # Force HTTPS in the final URIs
     SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

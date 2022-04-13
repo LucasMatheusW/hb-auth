@@ -14,8 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-
+from django.urls import path, include, reverse
 from hbauth.core.decorators import can_access_site
 from .core import views
 from django.contrib.auth import views as auth_views
@@ -34,4 +33,8 @@ urlpatterns = [
     path("no-permission/", views.no_permission, name="no-permission"),
     path("profile/", views.profile, name="profile"),
     path('social-auth/', include('social_django.urls', namespace="social")),
+    path("password-reset/", views.password_reset_request, name="password-reset"),
+    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password-reset-done.html'), name='password-reset-done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password-reset-confirm.html"), name='password-reset-confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password-reset-complete.html'), name='password_reset_complete'), 
 ]

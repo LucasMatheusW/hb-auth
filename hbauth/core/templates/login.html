@@ -41,8 +41,8 @@
                     <p class="separator">OU</p>
                     <a href="{% url 'social:begin' 'discord' %}" class="btn discord-login"><i class="fab fa-discord"></i> Login com Discord</a>
                     <ul class="form-options">
-                        <li><a href="#">Esqueci minha senha</a></li>
-                        <li><a href="#">Cadastre-se</a></li>
+                        <li><a href="{% url 'password-reset' %}">Esqueci minha senha</a></li>
+                        <!-- <li><a href="#">Cadastre-se</a></li> -->
                     </ul>
                 </form>
             </div>

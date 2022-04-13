@@ -34,7 +34,16 @@
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="w-100 me-3"> 
                                     {% render_field form.email class="form-control w-100 mb-3" placeholder=form.email.label readonly=True %}
-                                    {% render_field form.nickname class="form-control w-100" placeholder=form.nickname.label %}
+                                    {% if form.nickname.errors %}
+                                        {% render_field form.nickname class="form-control w-100 is-invalid" placeholder=form.nickname.label %}
+                                    {% else %}
+                                        {% render_field form.nickname class="form-control w-100" placeholder=form.nickname.label %}
+                                    {% endif %}
+                                    <div class="invalid-feedback d-flex flex-column justify-content-start text-start">
+                                        {% for e in form.nickname.errors %}
+                                            <small>{{ e }}</small>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                                 <div class="avatar-container">
                                     <img class="rounded-circle shadow-4 image" style="width: 100px;" id="avatar" src="{% if form.photo.value != "" %}{{ form.photo.value }}{% else %}{% static 'img/user_avatar.png' %}{% endif %}"/>

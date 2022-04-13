@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -148,6 +148,7 @@ AUTHENTICATION_BACKENDS = [
 
 OAUTH2_PROVIDER_APPLICATION_MODEL = 'oauth2_provider.Application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #  Sentry
 sentry_sdk.init(
     dsn=os.getenv('SENTRY_DSN', ""),
@@ -165,3 +166,10 @@ if not DEBUG:
     # Force HTTPS in the final URIs
     SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = 'westphallucas1@gmail.com'
+    EMAIL_HOST_PASSWORD = os.getenv('GMAIL_KEY', 'gmailkey')
+    DEFAULT_FROM_EMAIL = 'noreply@hannabananna.com'

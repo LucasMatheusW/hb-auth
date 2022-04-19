@@ -38,7 +38,7 @@ Quick start - USAGE in CONSUMER
 
 5. Utilize a autenticação pelo template com a tag ``{% url "social:begin "hannabananna" %}``<br><sub><sup>(A namespace 'social' é importada do pacote ``python-social-auth``)</sup></sub>
 
-6. Para utilizar a autenticação pelo DRFaça uma requisição POST para o seu client na URL de acess com o body:
+6. Para utilizar a autenticação pelo DR faça uma requisição POST para o seu client na URL de acess com o body:
 ```json
 {
     "provider": "hannabananna -- se o seu backend utilizar rest-social-auth",
